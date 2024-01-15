@@ -29,4 +29,4 @@ jobs:
       - name: Build and push docker image
         run: |
           docker build -t ainafahlgren/dockerhub .
-          docker push ainafahlgren/dockerhub
+          docker push ainafahlgren/dockerhub .
