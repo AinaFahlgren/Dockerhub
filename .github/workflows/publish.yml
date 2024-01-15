@@ -3,27 +3,27 @@ name: Publish Docker image
 on: 
     push: 
         branches:
-            -main
+            - main
 
 jobs:
     build:
         runs-on: ubuntu-latest
         
         steps: 
-            - name: Checkout repository
-            uses: actions/checkout@v3
+        - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Set up .net
-            uses: actions/setup-dotnet@v3
-            with:
-                dotnet-version: '6.x'
+        -name: Set up .net
+        uses: actions/setup-dotnet@v3
+        with:
+            dotnet-version: '6.x'
+            
+        - name: Restore and build
+        run: |
+            dotnet restore
+            dotnet build
 
-            - name: Restore and build
-                run:
-                    dotnet restore
-                    dotnet build
-
-            - name: Build docker image
-                run: docker build -t ainafahlgren/Dockerhub
+        - name: Build docker image
+        run: docker build -t ainafahlgren/Dockerhub
 
                 
