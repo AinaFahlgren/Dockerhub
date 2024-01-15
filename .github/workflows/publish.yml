@@ -23,5 +23,10 @@ jobs:
           dotnet restore
           dotnet build
 
-      - name: Build docker image
-        run: docker build -t ainafahlgren/dockerhub .
+      - name: Login to dockerhub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -P ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push docker image
+        run: |
+          docker build -t ainafahlgren/dockerhub .
+          docker push ainafahlgren/dockerhub
